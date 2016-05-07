@@ -9,5 +9,5 @@ import android.widget.TextView;
 public class ViewHolder{
     public TextView srtTv;
     public TextView timeTv;
-    public ImageView pointIv;
+    public TextView pointIv;
 }

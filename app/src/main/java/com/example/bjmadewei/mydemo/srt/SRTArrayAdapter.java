@@ -40,6 +40,7 @@ public class SRTArrayAdapter<E> extends ArrayAdapter<E> {
         if (convertView == null) {
             convertView = newItem();
             ViewHolder holder = new ViewHolder();
+            holder.pointIv = (TextView)((LinearLayout)convertView).getChildAt(0);
             holder.srtTv = (TextView)((LinearLayout)convertView).getChildAt(1);
             holder.timeTv = (TextView)((LinearLayout)convertView).getChildAt(2);
             convertView.setTag(holder);

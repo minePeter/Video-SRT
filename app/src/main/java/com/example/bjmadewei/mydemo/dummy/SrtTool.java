@@ -27,47 +27,29 @@ public class SrtTool {
 			e.printStackTrace();
 			return srt_map;
 		}
-		System.out.println("----------------------------------------------");
-		try {
-			byte[] data = new byte[1024];
-			inputStream.read(data);
-			System.out.println(new String(data));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("----------------------------------------------");
-		String charset = get_charset(inputStream, context);
-		System.out.println("charset:"+charset);
+//		String charset = get_charset(inputStream, context);
+//		System.out.println("charset:"+charset);
 
 		BufferedReader br = null;
 		try {
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream,charset);
-			if(inputStream == null) {
-				System.out.println("inputStream == null");
-			}
-			if(inputStreamReader == null) {
-				System.out.println("inputstreamreader == null");
-			}
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 			br = new BufferedReader(inputStreamReader);
-			if(br == null) {
-				System.out.println("br == null");
-			}
-		} catch (UnsupportedEncodingException e1) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return srt_map;
 		}
 		String line = null;
 		srt_map = new TreeMap<>();
-		StringBuffer sb = new StringBuffer(charset);
+		StringBuffer sb = new StringBuffer();
 		int key = 0;
 		try {
 			while ((line = br.readLine()) != null) {
+				System.out.println(line);
 				if (!line.equals("")) {
 					sb.append(line).append("@");
 					continue;
 				}
-				
 				String[] parseStrs = sb.toString().split("@");
 				// 该if为了适应一开始就有空行以及其他不符格式的空行情况
 				if (parseStrs.length < 3) {
