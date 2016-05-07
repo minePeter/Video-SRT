@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333">
+
+    <LinearLayout
+        android:id="@+id/srt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="4dp"
+                android:text="选择字幕进行分享"
+                android:textColor="#656565"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/btn_ch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/srt_btn_selected"
+                android:clickable="true"
+                android:paddingBottom="2dp"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:text="中文"
+                android:textColor="#858585"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/btn_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/srt_btn_unselected"
+                android:paddingBottom="2dp"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:text="英语"
+                android:textColor="#656565"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/srt_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/srt_close" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/srt_title"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="#3c3c3c" />
+
+    <com.example.bjmadewei.mydemo.srt.SRTLayout
+        android:id="@+id/srt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_view" />
+
+</RelativeLayout>
