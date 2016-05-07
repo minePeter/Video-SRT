@@ -18,24 +18,47 @@ public class SrtTool {
 	*/
 	public static TreeMap<Integer, SRT> parseSrt(String srtName, Context context) {
 		TreeMap srt_map = null;
-		String charset = get_charset(srtName);
 		InputStream inputStream = null;
+		System.out.println("----------------------------------------------");
 		try {
-			inputStream = context.getAssets().open("ch.srt");
+			inputStream = context.getAssets().open(srtName);
+			System.out.println(inputStream.available());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return srt_map;
 		}
+		System.out.println("----------------------------------------------");
+		try {
+			byte[] data = new byte[1024];
+			inputStream.read(data);
+			System.out.println(new String(data));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("----------------------------------------------");
+		String charset = get_charset(inputStream, context);
+		System.out.println("charset:"+charset);
+
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new InputStreamReader(inputStream,charset));
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream,charset);
+			if(inputStream == null) {
+				System.out.println("inputStream == null");
+			}
+			if(inputStreamReader == null) {
+				System.out.println("inputstreamreader == null");
+			}
+			br = new BufferedReader(inputStreamReader);
+			if(br == null) {
+				System.out.println("br == null");
+			}
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return srt_map;
 		}
 		String line = null;
-		srt_map = new TreeMap<Integer, SRT>();
+		srt_map = new TreeMap<>();
 		StringBuffer sb = new StringBuffer(charset);
 		int key = 0;
 		try {
@@ -147,11 +170,11 @@ public class SrtTool {
 		return result;
 	}
 	
-	static String get_charset(String file) {
+	static String get_charset(InputStream is, Context context) {
 			String charset = "GBK";
 			byte [] first3Bytes = new byte[3];
 			try{
-				BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+				BufferedInputStream bis = new BufferedInputStream(is);
 				int read = bis.read(first3Bytes, 0, 3);
 				if (read == -1) {
 					return charset;
